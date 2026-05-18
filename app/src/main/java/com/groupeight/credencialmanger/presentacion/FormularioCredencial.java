@@ -47,15 +47,16 @@ public class FormularioCredencial extends AppCompatActivity {
     }
 
     private void guardarCredencial(){
+        String cuenta = edtCuenta.getText().toString();
         String usuario = edtUsuario.getText().toString();
         String password = edtPassword.getText().toString();
         String dominio = edtDominio.getText().toString();
 
         credencialManager.guardarCredencial(
-                nombreCuenta,
+                cuenta,
                 usuario,
                 password,
-                packageName.isEmpty() ? null : packageName,
+                packageName,
                 dominio.isEmpty() ? null: dominio,
                 ()-> runOnUiThread(()->{
                     Toast.makeText(this, "Credencial guardada", Toast.LENGTH_LONG).show();
