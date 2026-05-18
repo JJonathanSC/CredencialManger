@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <EditText
+        android:id="@+id/edtCuentaFrmCredencial"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Cuenta"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtUsuarioFrmCredencial"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Usuario" />
+
+    <EditText
+        android:id="@+id/edtPassFrmCredencial"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edtDominioFrmCredencial"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Dominio (opcional)" />
+
+    <Button
+        android:id="@+id/btnGuardarFrmCredencial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar"/>
+
+</LinearLayout>

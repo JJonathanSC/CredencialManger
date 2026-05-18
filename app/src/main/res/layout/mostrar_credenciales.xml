@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Button
+        android:id="@+id/btnAgregarCredencialMostrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar credencial" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCredenciales"
+        android:layout_width="391dp"
+        android:layout_height="571dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

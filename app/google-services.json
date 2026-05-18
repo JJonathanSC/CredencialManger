@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "705653761335",
+    "project_id": "credentialmanager-9cea4",
+    "storage_bucket": "credentialmanager-9cea4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705653761335:android:0d8c28cffa87ce467566b2",
+        "android_client_info": {
+          "package_name": "com.groupeight.credencialmanger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxRtLcZDAMyjWHQwii-suMG_uxeHGc7RU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
