@@ -81,7 +81,7 @@ public class Login extends AppCompatActivity {
         auth.restaurarClaveSecreta(uid, masterPass,
                 () ->{
                 runOnUiThread(()->{
-                    startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, noHaceNadaSoloRedirige.class));
                     });
                 },
                 mensaje -> {
