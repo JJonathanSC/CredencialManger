@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.CancellationSignal;
 import android.os.OutcomeReceiver;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.credentials.exceptions.ClearCredentialException;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class MyCredentialProviderService extends CredentialProviderService {
 
-    private CredencialManager credencialManager;
+    private CredencialManager credencialManager = new CredencialManager();
 
 
     @Override

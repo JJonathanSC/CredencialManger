@@ -144,10 +144,11 @@ public class CredencialManager {
                             credencial.setPassword(enDeCryption.descifrar(credencial.getPassword(), clave));
                             credenciales.add(credencial);
                         }
-
+                        Log.d("TAG4", "credenciales encontradas: " + credenciales.size());
                         onCredencial.onCredencial(credenciales);
 
                     }catch (Exception e){
+                        Log.d("TAG5", "No encontro nada loco");
                         onError.onError("Error al descifrar");
                     }
                 }).addOnFailureListener(e -> onError.onError("Error al obtener las credenciales"));
