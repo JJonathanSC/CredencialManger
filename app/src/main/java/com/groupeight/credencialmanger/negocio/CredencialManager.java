@@ -1,5 +1,6 @@
 package com.groupeight.credencialmanger.negocio;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -122,5 +123,33 @@ public class CredencialManager {
 
     public interface OnCredencialListener{
         void onCredencial(List<Credenciales> credenciales);
+    }
+
+    public void obtenerCredencialByPackage(String packageName,
+                                           OnCredencialListener onCredencial,
+                                           Autenticacion.OnErrorListener onError){
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        fireBase.obtenerCredencialesByPackageName(uid, packageName)
+                .addOnSuccessListener(querySnapshots ->{
+                    try{
+                        SecretKey clave = keyStoreManager.getClaveSecreta();
+                        List<Credenciales> credenciales = new ArrayList<>();
+
+                        for (DocumentSnapshot doc : querySnapshots.getDocuments()){
+                            Credenciales credencial = doc.toObject(Credenciales.class);
+                            credencial.setDocId(doc.getId());
+                            credencial.getUsuario();
+                            credencial.setPassword(enDeCryption.descifrar(credencial.getPassword(), clave));
+                            credenciales.add(credencial);
+                        }
+
+                        onCredencial.onCredencial(credenciales);
+
+                    }catch (Exception e){
+                        onError.onError("Error al descifrar");
+                    }
+                }).addOnFailureListener(e -> onError.onError("Error al obtener las credenciales"));
     }
 }

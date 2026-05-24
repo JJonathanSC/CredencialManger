@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permisos necesarios para que la clase PackageManager devuelva las apps instaladas que son visibles -->
     <queries>
         <intent>
@@ -20,6 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CredencialManger">
+        <activity
+            android:name=".presentacion.CredentialEntrega"
+            android:exported="false" />
         <activity
             android:name=".noHaceNadaSoloRedirige"
             android:exported="false" />
@@ -48,20 +50,21 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyCredentialProviderService"
+        <service
+            android:name=".negocio.MyCredentialProviderService"
             android:enabled="true"
             android:exported="true"
-            android:label="My Credential Provider"
             android:icon="@mipmap/ic_launcher"
+            android:label="Gestor de contraseñas"
             android:permission="android.permission.BIND_CREDENTIAL_PROVIDER_SERVICE">
             <intent-filter>
-                <action android:name="android.service.credentials.CredentialProviderService"/>
+                <action android:name="android.service.credentials.CredentialProviderService" />
             </intent-filter>
+
             <meta-data
                 android:name="android.credentials.provider"
-                android:resource="@xml/provider"/>
+                android:resource="@xml/provider" />
         </service>
-
     </application>
 
 </manifest>
