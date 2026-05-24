@@ -53,7 +53,7 @@ public class AgregarCredencialActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, FormularioCredencial.class);
 
-            if (appSeleccionada.getPackageName()!=null);{
+            if (appSeleccionada.getPackageName() != null){
                 intent.putExtra("packageName", appSeleccionada.getPackageName());
                 intent.putExtra("nombreApp", appSeleccionada.getNombre());
             }

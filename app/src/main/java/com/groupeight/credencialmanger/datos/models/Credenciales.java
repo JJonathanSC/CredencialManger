@@ -1,5 +1,7 @@
 package com.groupeight.credencialmanger.datos.models;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Credenciales {
     private String cuenta;
     private String usuario;
@@ -58,10 +60,12 @@ public class Credenciales {
         this.dominio = domain;
     }
 
+    @Exclude
     public String getDocId() {
         return docId;
     }
 
+    @Exclude
     public void setDocId(String docId) {
         this.docId = docId;
     }

@@ -8,7 +8,9 @@ import com.groupeight.credencialmanger.datos.FireBase;
 import com.groupeight.credencialmanger.datos.models.Credenciales;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.crypto.SecretKey;
 
@@ -25,7 +27,7 @@ public class CredencialManager {
 
     public void guardarCredencial(String nombreCuenta, String usuario, String password,
                                   String packageName, String dominio,
-                                  Autenticacion.OnSuccesListener onSucces,
+                                  Autenticacion.OnSuccesListener onSuccess,
                                   Autenticacion.OnErrorListener onError){
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -45,7 +47,7 @@ public class CredencialManager {
             );
 
             fireBase.guardarCredencial(uid, credenciales)
-                    .addOnSuccessListener(unused -> onSucces.onSuccess())
+                    .addOnSuccessListener(unused -> onSuccess.onSuccess())
                     .addOnFailureListener(e -> onError.onError("Error al guardar credencial: " + e.getMessage()));
 
         }catch (Exception e){
@@ -86,6 +88,37 @@ public class CredencialManager {
                 .addOnFailureListener(e -> onError.onError("Error al eliminar la credencial"));
     }
 
+    public void editarCredencial(String docId, String cuenta, String usuario,
+                                 String password, String dominio, Autenticacion.OnSuccesListener onSuccess,
+                                 Autenticacion.OnErrorListener onError){
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+        try{
+            //Obtenemos la clave del KeyStore.
+            SecretKey clave = keyStoreManager.getClaveSecreta();
+
+            //Ciframos la contraseña
+            String pass = enDeCryption.Cifrar(password, clave);
+
+            //Armamos un diccionario de datos
+            Map<String, Object> campos = new HashMap<>();
+            campos.put("cuenta", cuenta);
+            campos.put("dominio", dominio);
+            campos.put("usuario", usuario);
+            campos.put("password",pass);
+
+            fireBase.actualizarCredencial(uid, docId, campos)
+                    .addOnSuccessListener(unused -> onSuccess.onSuccess())
+                    .addOnFailureListener(e -> onError.onError("Error al actualizar"));
+
+
+        }catch (Exception e){
+            onError.onError("Error al cifrar los datos");
+        }
+
+    }
 
     public interface OnCredencialListener{
         void onCredencial(List<Credenciales> credenciales);

@@ -10,6 +10,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.groupeight.credencialmanger.datos.models.Credenciales;
 import com.groupeight.credencialmanger.datos.models.Usuarios;
 
+import java.util.Map;
+
 public class FireBase {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -82,6 +84,14 @@ public class FireBase {
                 .collection("credenciales")
                 .document(credencialId)
                 .delete();
+    }
+
+    public Task<Void> actualizarCredencial(String uid, String docId, Map<String, Object> campos){
+        return db.collection("usuarios")
+                .document(uid)
+                .collection("credenciales")
+                .document(docId)
+                .update(campos);
     }
 
 }

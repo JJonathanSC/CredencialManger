@@ -1,6 +1,7 @@
 package com.groupeight.credencialmanger.presentacion.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.groupeight.credencialmanger.R;
 import com.groupeight.credencialmanger.datos.models.Credenciales;
+import com.groupeight.credencialmanger.presentacion.FormularioCredencial;
 
 import java.util.List;
 
@@ -48,8 +50,16 @@ public class CredencialAdapter extends RecyclerView.Adapter<CredencialAdapter.Cr
         holder.btnEliminar.setOnClickListener(v ->
                 listener.onEliminar(credencial.getDocId()));
 
-        holder.btnEditar.setOnClickListener(v ->
-                listener.onEditar(credencial, credencial.getDocId()));
+        holder.btnEditar.setOnClickListener(v -> {
+            Intent intent = new Intent(context, FormularioCredencial.class);
+            intent.putExtra("modo", "editar");
+            intent.putExtra("docId", credencial.getDocId());
+            intent.putExtra("cuenta", credencial.getCuenta());
+            intent.putExtra("usuario", credencial.getUsuario());
+            intent.putExtra("password", credencial.getPassword());
+            intent.putExtra("dominio",credencial.getDominio());
+            context.startActivity(intent);
+        });
     }
 
     @Override

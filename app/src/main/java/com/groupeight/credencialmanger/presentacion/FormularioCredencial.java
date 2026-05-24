@@ -18,8 +18,8 @@ import com.groupeight.credencialmanger.negocio.CredencialManager;
 public class FormularioCredencial extends AppCompatActivity {
 
     EditText edtUsuario, edtPassword, edtDominio, edtCuenta;
-    private String nombreCuenta, packageName;
-    Button btnGuardar;
+    private String nombreCuenta, packageName, modo, docId;
+    Button btnGuardar, btnEditar;
     private CredencialManager credencialManager;
 
     @Override
@@ -32,18 +32,32 @@ public class FormularioCredencial extends AppCompatActivity {
 
         nombreCuenta = getIntent().getStringExtra("nombreApp");
         packageName = getIntent().getStringExtra("packageName");
+        modo = getIntent().getStringExtra("modo");
+
 
         edtCuenta = findViewById(R.id.edtCuentaFrmCredencial);
         edtUsuario = findViewById(R.id.edtUsuarioFrmCredencial);
         edtPassword = findViewById(R.id.edtPassFrmCredencial);
         edtDominio = findViewById(R.id.edtDominioFrmCredencial);
-
-        if (!nombreCuenta.isEmpty()){
-            edtCuenta.setText(nombreCuenta);
-        }
+        edtCuenta.setText(nombreCuenta);
 
         btnGuardar = findViewById(R.id.btnGuardarFrmCredencial);
+
+        if (modo != null){
+            docId = getIntent().getStringExtra("docId");
+            String usuario = getIntent().getStringExtra("usuario");
+            String cuenta = getIntent().getStringExtra("cuenta");
+            String password = getIntent().getStringExtra("password");
+            String dominio = getIntent().getStringExtra("dominio");
+
+            edtCuenta.setText(cuenta);
+            edtUsuario.setText(usuario);
+            edtPassword.setText(password);
+            edtDominio.setText(dominio);
+        }
+
         btnGuardar.setOnClickListener(v -> guardarCredencial());
+
     }
 
     private void guardarCredencial(){
@@ -52,6 +66,21 @@ public class FormularioCredencial extends AppCompatActivity {
         String password = edtPassword.getText().toString();
         String dominio = edtDominio.getText().toString();
 
+        if (modo != null){
+            credencialManager.editarCredencial(
+                    docId,
+                    cuenta,
+                    usuario,
+                    password,
+                    dominio.isEmpty() ? null: dominio,
+                    ()-> runOnUiThread(() ->{
+                        Toast.makeText(this, "Credencial editada", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, MostrarCredenciales.class));
+                    }),
+                    mensaje -> runOnUiThread(()-> Toast.makeText(this, "Error al editar", Toast.LENGTH_SHORT).show())
+            );
+            return;
+        }
         credencialManager.guardarCredencial(
                 cuenta,
                 usuario,
