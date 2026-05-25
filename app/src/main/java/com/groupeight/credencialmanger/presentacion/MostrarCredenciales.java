@@ -2,6 +2,7 @@ package com.groupeight.credencialmanger.presentacion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class MostrarCredenciales extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mostrar_credenciales);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE);
 
         rvCredenciales = findViewById(R.id.rvCredenciales);
         rvCredenciales.setLayoutManager(new GridLayoutManager(this,1));

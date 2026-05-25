@@ -57,4 +57,5 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.credentials:credentials:1.6.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.6.0")
+    implementation("com.google.android.material:material:1.12.0")
 }

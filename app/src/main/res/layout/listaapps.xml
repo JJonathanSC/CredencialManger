@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/bg_gradient"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/ivAppLista"
         android:layout_width="90dp"
         android:layout_height="88dp"
+        android:padding="10dp"
         tools:srcCompat="@android:drawable/btn_star" />
 
     <TextView
@@ -17,7 +18,9 @@
         android:layout_height="72dp"
         android:layout_marginTop="15sp"
         android:layout_weight="1"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="#1F7A8C"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvPackageNameLista"

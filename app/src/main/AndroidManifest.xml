@@ -20,10 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CredencialManger">
         <activity
-            android:name=".presentacion.CredentialEntrega"
+            android:name=".presentacion.GenerarPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".noHaceNadaSoloRedirige"
+            android:name=".presentacion.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentacion.CredentialEntrega"
             android:exported="false" />
         <activity
             android:name=".presentacion.MostrarCredenciales"
@@ -38,10 +41,7 @@
             android:name=".presentacion.RegistroUsuario"
             android:exported="false" />
         <activity
-            android:name=".presentacion.Login"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".presentacion.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

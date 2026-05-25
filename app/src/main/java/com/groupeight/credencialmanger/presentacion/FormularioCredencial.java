@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.groupeight.credencialmanger.R;
 import com.groupeight.credencialmanger.negocio.CredencialManager;
 
@@ -19,7 +20,7 @@ public class FormularioCredencial extends AppCompatActivity {
 
     EditText edtUsuario, edtPassword, edtDominio, edtCuenta;
     private String nombreCuenta, packageName, modo, docId;
-    Button btnGuardar, btnEditar;
+    MaterialButton btnGuardar;
     private CredencialManager credencialManager;
 
     @Override
@@ -35,13 +36,13 @@ public class FormularioCredencial extends AppCompatActivity {
         modo = getIntent().getStringExtra("modo");
 
 
-        edtCuenta = findViewById(R.id.edtCuentaFrmCredencial);
-        edtUsuario = findViewById(R.id.edtUsuarioFrmCredencial);
-        edtPassword = findViewById(R.id.edtPassFrmCredencial);
-        edtDominio = findViewById(R.id.edtDominioFrmCredencial);
+        edtCuenta = findViewById(R.id.edtCuentaFormCredencial);
+        edtUsuario = findViewById(R.id.edtUsuarioFormCredencial);
+        edtPassword = findViewById(R.id.edtPassFormCredencial);
+        edtDominio = findViewById(R.id.edtDominioFormCredencial);
         edtCuenta.setText(nombreCuenta);
 
-        btnGuardar = findViewById(R.id.btnGuardarFrmCredencial);
+        btnGuardar = findViewById(R.id.btnGuardarFormCredencial);
 
         if (modo != null){
             docId = getIntent().getStringExtra("docId");
